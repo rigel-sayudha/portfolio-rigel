@@ -55,3 +55,27 @@ sr.reveal('.home__data, .about__img, .skills__subtitle, .skills__text',{});
 sr.reveal('.home__img, .about__subtitle, .about__text, .skills__img',{delay: 400}); 
 sr.reveal('.home__social-icon',{ interval: 200}); 
 sr.reveal('.skills__data, .work__img, .contact__input',{interval: 200}); 
+
+document.addEventListener("DOMContentLoaded", function() {
+    const workImages = document.querySelectorAll('.work__img');
+    const tooltip = document.getElementById('tooltip');
+
+    workImages.forEach(image => {
+        image.addEventListener('mouseover', function(e) {
+            const title = this.getAttribute('data-title');
+            tooltip.innerText = title;
+            tooltip.style.display = 'block';
+            tooltip.style.left = e.pageX + 'px';
+            tooltip.style.top = e.pageY + 'px';
+        });
+
+        image.addEventListener('mousemove', function(e) {
+            tooltip.style.left = e.pageX + 'px';
+            tooltip.style.top = e.pageY + 'px';
+        });
+
+        image.addEventListener('mouseout', function() {
+            tooltip.style.display = 'none';
+        });
+    });
+});
